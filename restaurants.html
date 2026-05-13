@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodLion - Select Restaurant</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        .search-section {
+            background: linear-gradient(135deg, #FF5722, #2D2D2D);
+            padding: 100px 20px 80px;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        .search-section h1 {
+            animation: heroFadeUp 0.8s ease both;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+        }
+        .search-section p {
+            animation: heroFadeUp 0.8s 0.15s ease both;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        @keyframes heroFadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .search-bar {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            animation: heroFadeUp 0.8s 0.3s ease both;
+        }
+        .search-bar input {
+            padding: 15px 20px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        .search-bar input:focus {
+            transform: scale(1.03);
+            box-shadow: 0 6px 25px rgba(255,87,34,0.4);
+        }
+        .search-bar button {
+            padding: 15px 35px;
+            border-radius: 30px;
+            background: #333;
+            color: white;
+            border: 2px solid #333;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .search-bar button:hover {
+            background: white;
+            color: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        /* Stagger restaurant cards */
+        .grid-container .card:nth-child(1) { animation: cardIn 0.6s 0.1s ease both; }
+        .grid-container .card:nth-child(2) { animation: cardIn 0.6s 0.2s ease both; }
+        .grid-container .card:nth-child(3) { animation: cardIn 0.6s 0.3s ease both; }
+        .grid-container .card:nth-child(4) { animation: cardIn 0.6s 0.4s ease both; }
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .section-heading {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+            border-bottom: 3px solid #FF5722;
+            display: inline-block;
+            font-size: 1.8rem;
+        }
+        .section-heading-wrap {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo-section">
+                <a href="index.html" class="logo"><img src="images/logo-final.png" alt="FoodLion Logo"></a>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Welcome</a></li>
+                    <li><a href="restaurants.html" class="active">Restaurants</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contacts.html">Contact</a></li>
+                    <li><a href="login.html" class="btn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="search-section">
+        <h1>Find Restaurants Near You</h1>
+        <p>Order from top 50+ restaurants in Okara</p>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for restaurant or food (e.g. KFC, Pizza)...">
+            <button>Search</button>
+        </div>
+    </section>
+
+    <main style="max-width: 1200px; margin: 0 auto; padding: 0 20px 60px;">
+        <div class="section-heading-wrap">
+            <h2 class="section-heading">Top Picks for You 🦁</h2>
+        </div>
+
+        <div class="grid-container">
+            <div class="card rest-card" onclick="window.location.href='menu-kfc.html'">
+                <span class="rest-badge">Fastest Delivery</span>
+                <img src="images/kfc-menu.avif" alt="KFC" loading="lazy">
+                <h3 style="padding: 15px 20px 5px;">KFC</h3>
+                <p style="padding: 0 20px;">American • Fast Food • Burgers</p>
+                <div class="rest-info">
+                    <span class="rating"><i class="fa-solid fa-star"></i> 4.5</span>
+                    <span><i class="fa-solid fa-clock"></i> 30 min</span>
+                    <span>Min: Rs. 500</span>
+                </div>
+            </div>
+
+            <div class="card rest-card" onclick="window.location.href='menu-dominos.html'">
+                <span class="rest-badge">50% OFF</span>
+                <img src="images/domino-menu.avif" alt="Dominos" loading="lazy">
+                <h3 style="padding: 15px 20px 5px;">Dominos</h3>
+                <p style="padding: 0 20px;">Italian • Pizzas • Pasta</p>
+                <div class="rest-info">
+                    <span class="rating"><i class="fa-solid fa-star"></i> 4.2</span>
+                    <span><i class="fa-solid fa-clock"></i> 45 min</span>
+                    <span>Min: Rs. 1000</span>
+                </div>
+            </div>
+
+            <div class="card rest-card" onclick="window.location.href='menu-biryani.html'">
+                <img src="images/biryani-menu.avif" alt="Biryani" loading="lazy">
+                <h3 style="padding: 15px 20px 5px;">Karachi Biryani Kitchen</h3>
+                <p style="padding: 0 20px;">Pakistani • Biryani • Karahi</p>
+                <div class="rest-info">
+                    <span class="rating"><i class="fa-solid fa-star"></i> 4.8</span>
+                    <span><i class="fa-solid fa-clock"></i> 25 min</span>
+                    <span>Min: Rs. 300</span>
+                </div>
+            </div>
+
+            <div class="card rest-card" onclick="window.location.href='menu-cakes.html'">
+                <span class="rest-badge" style="background:#D81B60;">Sweet Treats</span>
+                <img src="images/cakes-menu.avif" alt="Cakes" loading="lazy">
+                <h3 style="padding: 15px 20px 5px;">Cakes &amp; Bakes</h3>
+                <p style="padding: 0 20px;">Bakery • Desserts • Snacks</p>
+                <div class="rest-info">
+                    <span class="rating"><i class="fa-solid fa-star"></i> 4.9</span>
+                    <span><i class="fa-solid fa-truck-fast"></i> 40 min</span>
+                    <span>Min: Rs. 500</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 FoodLion. All rights reserved.</p>
+    </footer>
+
+    <script src="JS/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cakes & Bakes - FoodLion</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <style>
+        .bakery-header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/cakes-header.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 130px 20px 80px;
+            text-align: center;
+            border-bottom: 5px solid #D81B60;
+        }
+        .bakery-header h1 {
+            font-size: 3.5rem;
+            font-family: 'Georgia', serif;
+            font-weight: 900;
+            font-style: italic;
+            margin: 10px 0;
+            animation: cakeReveal 0.8s ease both;
+            text-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+        .bakery-header p { animation: cakeReveal 0.8s 0.2s ease both; font-size: 1.2rem; opacity: 0.9; }
+        @keyframes cakeReveal {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .brand-badge {
+            background-color: #D81B60;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            animation: cakeReveal 0.6s ease both;
+        }
+        .section-title {
+            text-align: center;
+            margin: 45px 0 15px;
+            font-size: 1.8rem;
+            color: #333;
+            font-family: 'Georgia', serif;
+            border-bottom: 2px solid #D81B60;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+        .section-title:hover { color: #D81B60; }
+        .section-container { text-align: center; }
+        .deal-card {
+            background: linear-gradient(45deg, #D81B60, #ad1457);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 4px 15px rgba(216,27,96,0.35);
+            flex-wrap: wrap;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .deal-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.1);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+        .deal-card:hover::after { transform: translateX(100%); }
+        .deal-card:hover { transform: scale(1.02); box-shadow: 0 14px 35px rgba(216,27,96,0.45); }
+        .deal-text h3 { margin: 0; font-size: 1.5rem; font-family: 'Georgia', serif; }
+        .deal-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: white;
+            color: #D81B60;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        .btn-bakery {
+            background-color: #D81B60;
+            color: white;
+            width: 100%;
+            border-radius: 20px;
+            border: none;
+            padding: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-bakery::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.15);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+        .btn-bakery:hover::before { transform: translateX(100%); }
+        .btn-bakery:hover {
+            background-color: #ad1457;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(216,27,96,0.4);
+        }
+        model-viewer {
+            width: 100%;
+            height: 250px;
+            background-color: #fafafa;
+            border-radius: 15px 15px 0 0;
+            outline: none;
+        }
+        .ar-button {
+            background-color: #D81B60;
+            border-radius: 20px;
+            border: none;
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            padding: 10px 18px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 10;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .ar-button:hover { transform: scale(1.07); box-shadow: 0 4px 12px rgba(216,27,96,0.4); }
+        .grid-container .card h3 { padding: 15px 20px 5px; }
+        .grid-container .card p { padding: 0 20px 5px; }
+        .grid-container .card h4 { padding: 0 20px; }
+        .grid-container .card .btn-bakery { margin: 10px 20px 20px; width: calc(100% - 40px); border-radius: 20px; }
+        .grid-container .card:nth-child(1) { animation: cakeCardIn 0.5s 0.1s ease both; }
+        .grid-container .card:nth-child(2) { animation: cakeCardIn 0.5s 0.2s ease both; }
+        .grid-container .card:nth-child(3) { animation: cakeCardIn 0.5s 0.3s ease both; }
+        @keyframes cakeCardIn {
+            from { opacity: 0; transform: translateY(25px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @media(max-width:600px) { .deal-card { flex-direction: column; text-align: center; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo-section"><a href="index.html" class="logo"><img src="images/logo-final.png" alt="FoodLion Logo"></a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Welcome</a></li>
+                    <li><a href="restaurants.html" class="active">Restaurants</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contacts.html">Contact</a></li>
+                    <li><a href="login.html" class="btn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="bakery-header">
+        <span class="brand-badge">Fresh From The Oven</span>
+        <h1>Cakes &amp; Bakes</h1>
+        <p>Premium cakes, savory snacks, and delightful desserts.</p>
+    </section>
+
+    <main style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+        <div class="section-container"><h2 class="section-title">🍰 Sweet Celebrations</h2></div>
+
+        <div class="deal-card" onclick="addToCart('Birthday Special Bundle', 2000, 'images/cakes-header.png')">
+            <div class="deal-text">
+                <h3>Birthday Special</h3>
+                <p>2lb Chocolate Fudge Cake + 1 Party Popper + Candles</p>
+            </div>
+            <div class="deal-price">Rs. 2000</div>
+        </div>
+
+        <div class="section-container"><h2 class="section-title">🎂 Premium Cakes</h2></div>
+
+        <div class="grid-container">
+            <div class="card menu-card">
+                <model-viewer src="images/chocolate-fudge.glb" poster="images/chocolate-fudge.avif" alt="Chocolate Fudge Cake 3D" ar ar-modes="scene-viewer webxr quick-look" camera-controls auto-rotate shadow-intensity="1.5">
+                    <button slot="ar-button" class="ar-button"><i class="fa-solid fa-cube"></i> View in Room</button>
+                </model-viewer>
+                <h3>Chocolate Fudge</h3>
+                <p>Rich, dark chocolate layers with ganache.</p>
+                <h4 style="color:#D81B60;">Rs. 1500 (2lb)</h4>
+                <button class="btn-bakery" onclick="addToCart('Chocolate Fudge', 1500, 'images/chocolate-fudge.avif')">Add to Bucket</button>
+            </div>
+
+            <div class="card menu-card">
+                <model-viewer src="images/freshpineapple.glb" poster="images/fresh-pineapple.avif" alt="Fresh Pineapple Cake 3D" ar ar-modes="scene-viewer webxr quick-look" camera-controls auto-rotate shadow-intensity="1.5">
+                    <button slot="ar-button" class="ar-button"><i class="fa-solid fa-cube"></i> View in Room</button>
+                </model-viewer>
+                <h3>Fresh Pineapple</h3>
+                <p>Light sponge with fresh cream and pineapple chunks.</p>
+                <h4 style="color:#D81B60;">Rs. 1300 (2lb)</h4>
+                <button class="btn-bakery" onclick="addToCart('Fresh Pineapple', 1300, 'images/fresh-pineapple.avif')">Add to Bucket</button>
+            </div>
+
+            <div class="card menu-card">
+                <model-viewer src="images/redvelvet.glb" poster="images/red-velvet.avif" alt="Red Velvet Cake 3D" ar ar-modes="scene-viewer webxr quick-look" camera-controls auto-rotate shadow-intensity="1.5">
+                    <button slot="ar-button" class="ar-button"><i class="fa-solid fa-cube"></i> View in Room</button>
+                </model-viewer>
+                <h3>Red Velvet</h3>
+                <p>Classic red velvet sponge with cheese frosting.</p>
+                <h4 style="color:#D81B60;">Rs. 1800 (2lb)</h4>
+                <button class="btn-bakery" onclick="addToCart('Red Velvet', 1800, 'images/red-velvet.avif')">Add to Bucket</button>
+            </div>
+        </div>
+
+        <div class="section-container"><h2 class="section-title">🥐 Savory Snacks</h2></div>
+
+        <div class="grid-container">
+            <div class="card menu-card">
+                <model-viewer src="images/samosa.glb" poster="images/chicken-patties.avif" alt="Samosa 3D" ar ar-modes="scene-viewer webxr quick-look" camera-controls auto-rotate shadow-intensity="1.5">
+                    <button slot="ar-button" class="ar-button"><i class="fa-solid fa-cube"></i> View in Room</button>
+                </model-viewer>
+                <h3>Samosa / Patties</h3>
+                <p>Crispy fried pastry with savory chicken filling.</p>
+                <h4 style="color:#D81B60;">Rs. 80 / pc</h4>
+                <button class="btn-bakery" onclick="addToCart('Chicken Patty', 80, 'images/chicken-patties.avif')">Add to Bucket</button>
+            </div>
+
+            <div class="card menu-card">
+                <model-viewer src="images/pizza 3d model (1).glb" poster="images/pizza-slice.avif" alt="Pizza Slice 3D" ar ar-modes="scene-viewer webxr quick-look" camera-controls auto-rotate shadow-intensity="1.5">
+                    <button slot="ar-button" class="ar-button"><i class="fa-solid fa-cube"></i> View in Room</button>
+                </model-viewer>
+                <h3>Pizza Slice</h3>
+                <p>Thick bakery-style pizza slice with cheese.</p>
+                <h4 style="color:#D81B60;">Rs. 150 / pc</h4>
+                <button class="btn-bakery" onclick="addToCart('Pizza Slice', 150, 'images/pizza-slice.avif')">Add to Bucket</button>
+            </div>
+        </div>
+    </main>
+
+    <footer><p>&copy; 2026 FoodLion. All rights reserved.</p></footer>
+    <script src="JS/script.js"></script>
+</body>
+</html>

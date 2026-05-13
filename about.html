@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - FoodLion</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, #FF5722, #2D2D2D);
+            color: white;
+            padding: 120px 20px 80px;
+            text-align: center;
+            animation: heroFade 0.8s ease both;
+        }
+        @keyframes heroFade {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .about-hero h1 { font-size: 3rem; text-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .about-hero p { font-size: 1.2rem; opacity: 0.9; margin-top: 10px; }
+
+        .about-content {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            animation: slideUp 0.7s 0.2s ease both;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .about-content h2 {
+            font-size: 1.5rem;
+            color: #FF5722;
+            border-left: 4px solid #FF5722;
+            padding-left: 15px;
+            margin: 30px 0 10px;
+            display: block;
+            text-align: left;
+            border-bottom: none;
+            transition: padding-left 0.3s ease;
+        }
+        .about-content h2:hover { padding-left: 22px; }
+        .about-content p { color: #555; line-height: 1.9; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo-section"><a href="index.html" class="logo"><img src="images/logo-final.png" alt="FoodLion Logo"></a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Welcome</a></li>
+                    <li><a href="restaurants.html" class="active">Restaurants</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contacts.html">Contact</a></li>
+                    <li><a href="login.html" class="btn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="about-hero">
+            <h1>About FoodLion</h1>
+            <p>Delivering happiness since 2024.</p>
+        </section>
+
+        <div class="about-content">
+            <h2>Our Story</h2>
+            <p>FoodLion started with a simple mission: to connect food lovers with the best restaurants in Okara. What began as a small project has now grown into the city's favorite food delivery service.</p>
+            <h2>Our Mission</h2>
+            <p>We aim to provide fast, hygienic, and reliable food delivery. Whether it's a late-night craving or a family dinner, FoodLion is always ready to serve.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 FoodLion. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms &amp; Conditions</a></p>
+    </footer>
+    <script src="JS/script.js"></script>
+</body>
+</html>

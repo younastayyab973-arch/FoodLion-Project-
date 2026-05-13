@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart - FoodLion</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        .cart-container {
+            max-width: 900px;
+            margin: 110px auto 60px;
+            padding: 35px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.1);
+            animation: fadeInUp 0.6s ease both;
+            border-top: 4px solid #FF5722;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .cart-container h1 {
+            border-bottom: 3px solid #FF5722;
+            display: inline-block;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+        .cart-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        .cart-table th {
+            background: #f8f9fa;
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 2px solid #eee;
+            color: #555;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .cart-table td {
+            padding: 15px 16px;
+            border-bottom: 1px solid #f5f5f5;
+            vertical-align: middle;
+            transition: background 0.2s;
+        }
+        .cart-table tbody tr {
+            transition: background 0.2s, transform 0.2s;
+        }
+        .cart-table tbody tr:hover {
+            background: rgba(255,87,34,0.03);
+        }
+        /* Remove animation for deleted rows */
+        .cart-table tbody tr.removing {
+            animation: rowSlideOut 0.4s ease forwards;
+        }
+        @keyframes rowSlideOut {
+            to { opacity: 0; transform: translateX(30px); height: 0; padding: 0; }
+        }
+        .cart-img {
+            width: 65px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .cart-table tbody tr:hover .cart-img { transform: scale(1.08); }
+        .remove-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 8px 13px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .remove-btn:hover {
+            background: #cc0000;
+            transform: scale(1.15);
+            box-shadow: 0 4px 12px rgba(255,0,0,0.3);
+        }
+        .total-section {
+            text-align: right;
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #FF5722;
+        }
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        /* Staggered row entrance */
+        .cart-table tbody tr { animation: rowIn 0.4s ease both; }
+        .cart-table tbody tr:nth-child(1) { animation-delay: 0.05s; }
+        .cart-table tbody tr:nth-child(2) { animation-delay: 0.1s; }
+        .cart-table tbody tr:nth-child(3) { animation-delay: 0.15s; }
+        .cart-table tbody tr:nth-child(4) { animation-delay: 0.2s; }
+        @keyframes rowIn {
+            from { opacity: 0; transform: translateX(-15px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo-section"><a href="index.html" class="logo"><img src="images/logo-final.png" alt="FoodLion Logo"></a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Welcome</a></li>
+                    <li><a href="restaurants.html" class="active">Restaurants</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contacts.html">Contact</a></li>
+                    <li><a href="login.html" class="btn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="cart-container">
+            <h1>Your Cart 🛒</h1>
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items-container"></tbody>
+            </table>
+
+            <div class="total-section">
+                Total: Rs. <span id="cart-total">0</span>
+            </div>
+
+            <div class="cart-actions">
+                <a href="restaurants.html" class="btn" style="background:#555;">&larr; Add More Food</a>
+                <a href="order.html" class="btn">Proceed to Checkout &rarr;</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 FoodLion. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms &amp; Conditions</a></p>
+    </footer>
+
+    <script src="JS/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => { loadCart(); });
+
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const container = document.getElementById('cart-items-container');
+            const totalEl = document.getElementById('cart-total');
+            let total = 0;
+            container.innerHTML = '';
+
+            if (cart.length === 0) {
+                container.innerHTML = `<tr><td colspan="4" style="padding:50px; text-align:center; color:#999;">
+                    <div style="font-size:3rem; margin-bottom:15px;">🛒</div>
+                    <strong style="font-size:1.1rem; display:block; margin-bottom:8px;">Your cart is empty!</strong>
+                    <a href="restaurants.html" style="color:#FF5722; text-decoration:underline; font-weight:600;">Go order something delicious</a>
+                </td></tr>`;
+            } else {
+                cart.forEach((item, index) => {
+                    total += parseInt(item.price);
+                    const imgPath = item.image || 'images/logo-final.png';
+                    const row = `
+                        <tr style="animation-delay:${index * 0.07}s">
+                            <td><img src="${imgPath}" class="cart-img" alt="${item.item}"></td>
+                            <td><strong>${item.item}</strong></td>
+                            <td style="color:#FF5722; font-weight:700;">Rs. ${item.price}</td>
+                            <td><button class="remove-btn" onclick="removeItem(${index})"><i class="fa-solid fa-trash"></i></button></td>
+                        </tr>`;
+                    container.innerHTML += row;
+                });
+            }
+            totalEl.innerText = total;
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+            showNotification('Item removed from cart.', 'error');
+        }
+    </script>
+</body>
+</html>

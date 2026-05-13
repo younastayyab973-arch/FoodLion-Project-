@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - FoodLion</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        .contact-wrapper {
+            max-width: 800px;
+            margin: 110px auto 60px;
+            padding: 45px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            animation: fadeInUp 0.7s ease both;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .contact-wrapper h1 {
+            color: #FF5722;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+        }
+        .contact-info {
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+        .contact-info p {
+            margin: 12px 0;
+            color: #555;
+            transition: color 0.2s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .contact-info p:hover {
+            color: #FF5722;
+            transform: translateX(5px);
+        }
+        .contact-info i { color: #FF5722; width: 20px; }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 13px 16px;
+            margin-bottom: 15px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+            display: block;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #FF5722;
+            box-shadow: 0 0 0 3px rgba(255,87,34,0.12);
+            transform: translateY(-1px);
+        }
+        .contact-form button {
+            width: 100%;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo-section"><a href="index.html" class="logo"><img src="images/logo-final.png" alt="FoodLion Logo"></a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Welcome</a></li>
+                    <li><a href="restaurants.html" class="active">Restaurants</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contacts.html">Contact</a></li>
+                    <li><a href="login.html" class="btn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="contact-wrapper">
+            <h1>Get in Touch</h1>
+
+            <div class="contact-info">
+                <p><i class="fa-solid fa-phone"></i> +92 300 1234567</p>
+                <p><i class="fa-solid fa-envelope"></i> support@foodlion.com</p>
+                <p><i class="fa-solid fa-location-dot"></i> Okara, Punjab, Pakistan</p>
+            </div>
+
+            <form class="contact-form" onsubmit="handleContact(event)">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="5" placeholder="How can we help you?" required></textarea>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 FoodLion. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms &amp; Conditions</a></p>
+    </footer>
+
+    <script src="JS/script.js"></script>
+    <script>
+        function handleContact(e) {
+            e.preventDefault();
+            showNotification('✅ Message sent! We\'ll get back to you soon.');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>

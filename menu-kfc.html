@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFC - FoodLion</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <style>
+        .kfc-header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/kfc-header.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 130px 20px 80px;
+            text-align: center;
+            border-bottom: 5px solid #E4002B;
+        }
+        .kfc-header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            font-style: italic;
+            animation: headerReveal 0.8s ease both;
+            text-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+        .kfc-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: headerReveal 0.8s 0.2s ease both;
+        }
+        @keyframes headerReveal {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section-title {
+            text-align: center;
+            margin: 45px 0 15px;
+            font-size: 1.8rem;
+            color: #333;
+            text-transform: uppercase;
+            font-weight: 800;
+            border-bottom: 2px solid #E4002B;
+            display: inline-block;
+            transition: letter-spacing 0.3s ease;
+        }
+        .section-title:hover { letter-spacing: 3px; }
+        .btn-kfc {
+            background-color: #E4002B;
+            color: white;
+            width: 100%;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            margin-top: 10px;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-kfc::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.15);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+        .btn-kfc:hover::before { transform: translateX(100%); }
+        .btn-kfc:hover {
+            background-color: #b00020;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(228,0,43,0.4);
+        }
+        model-viewer {
+            width: 100%;
+            height: 250px;
+            background-color: #fafafa;
+            border-radius: 5px;
+            outline: none;
+        }
+        .ar-button {
+            background-color: #E4002B;
+            border-radius: 20px;
+            border: none;
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            padding: 10px 18px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 10;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .ar-button:hover { transform: scale(1.07); box-shadow: 0 4px 12px rgba(228,0,43,0.4); }
+
+        /* Deal card */
+        .kfc-deal {
+            background: #E4002B;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 4px 15px rgba(228,0,43,0.3);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .kfc-deal:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(228,0,43,0.4);
+        }
+        .kfc-deal h3 { font-size: 1.4rem; margin: 0; }
+        .kfc-deal p { opacity: 0.9; margin-top: 4px; }
+        .deal-price-badge {
+            background: white;
+            color: #E4002B;
+            font-weight: 900;
+            font-size: 1.2rem;
+            padding: 6px 18px;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+        .deal-add-btn {
+            background: white;
+            color: #E4002B;
+            border: none;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .deal-add-btn:hover { background: #fff5f5; transform: scale(1.05); }
+
+        /* Grid stagger */
+        .grid-container .card:nth-child(1) { animation: cardReveal 0.5s 0.1s ease both; }
+        .grid-container .card:nth-child(2) { animation: cardReveal 0.5s 0.2s ease both; }
+        .grid-container .card:nth-child(3) { animation: cardReveal 0.5s 0.3s ease both; }
+        @keyframes cardReveal {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section-center { text-align: center; }
+        .card-inner { padding: 15px; }
+        .card-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo-section"><a class="logo" href="index.html"><img src="images/logo-final.png" alt="FoodLion Logo"></a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Welcome</a></li>
+                    <li><a href="restaurants.html" class="active">Restaurants</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contacts.html">Contact</a></li>
+                    <li><a href="login.html" class="btn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="kfc-header">
+        <h1>KFC</h1>
+        <p>Crispy, Crunchy, Spicy. The world's best chicken.</p>
+    </section>
+
+    <main style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+        <div class="section-center"><h2 class="section-title">🍗 Bucket Deals</h2></div>
+
+        <div class="kfc-deal" onclick="addToCart('Family Festival', 2800, 'images/bucket.png')">
+            <div>
+                <h3>Family Festival</h3>
+                <p>4 Zinger Burgers + 4 Chicken Pieces + 2 Dinner Rolls + 1.5L Drink</p>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                <span class="deal-price-badge">Rs. 2800</span>
+                <button class="deal-add-btn" onclick="event.stopPropagation(); addToCart('Family Festival', 2800, 'images/bucket.png')">Add to Bucket</button>
+            </div>
+        </div>
+
+        <div class="section-center"><h2 class="section-title">🍔 Burgers &amp; Wraps</h2></div>
+
+        <div class="grid-container">
+            <div class="card menu-card" style="display:flex; flex-direction:column;">
+                <model-viewer src="images/burger-3d.glb" ios-src="images/burger-3d.usdz" poster="images/zinger-kfc.avif"
+                    alt="Mighty Zinger 3D" ar ar-modes="scene-viewer webxr quick-look"
+                    camera-controls auto-rotate shadow-intensity="1.5" touch-action="pan-y">
+                    <button slot="ar-button" class="ar-button"><i class="fa-solid fa-cube"></i> View in Room</button>
+                </model-viewer>
+                <div class="card-inner">
+                    <h3>Mighty Zinger (3D)</h3>
+                    <p style="color:#666; font-size:0.9rem;">Double fillet with cheese, spicy mayo &amp; lettuce.</p>
+                    <div class="card-price-row">
+                        <strong style="color:#E4002B; font-size:1.3rem;">Rs. 750</strong>
+                        <button class="btn-kfc" style="width:auto; padding:10px 20px;" onclick="addToCart('Mighty Zinger', 750, 'images/zinger-kfc.avif')">Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card menu-card">
+                <img src="images/burger1.jpeg" alt="Zinger Burger" loading="lazy">
+                <div class="card-inner">
+                    <h3>Zinger Burger</h3>
+                    <p>The classic crispy chicken burger.</p>
+                    <div class="card-price-row">
+                        <strong style="color:#E4002B; font-size:1.2rem;">Rs. 550</strong>
+                        <button class="btn-kfc" style="width:auto; padding:10px 20px;" onclick="addToCart('Zinger Burger', 550, 'images/Zinger.jpg')">Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card menu-card">
+                <img src="images/zinger-kfc.avif" alt="Twister Wrap" loading="lazy">
+                <div class="card-inner">
+                    <h3>Twister Wrap</h3>
+                    <p>Chicken strips wrapped in tortilla with mayo.</p>
+                    <div class="card-price-row">
+                        <strong style="color:#E4002B; font-size:1.2rem;">Rs. 450</strong>
+                        <button class="btn-kfc" style="width:auto; padding:10px 20px;" onclick="addToCart('Twister Wrap', 450, 'images/zinger-kfc.avif')">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-center"><h2 class="section-title">🍟 Sides</h2></div>
+
+        <div class="grid-container">
+            <div class="card menu-card">
+                <img src="images/bucket.png" alt="Hot Wings" loading="lazy">
+                <div class="card-inner">
+                    <h3>Hot Wings (10 Pcs)</h3>
+                    <p>Spicy crispy wings.</p>
+                    <div class="card-price-row">
+                        <strong style="color:#E4002B; font-size:1.2rem;">Rs. 600</strong>
+                        <button class="btn-kfc" style="width:auto; padding:10px 20px;" onclick="addToCart('Hot Wings', 600, 'images/bucket.png')">Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card menu-card">
+                <img src="images/masala-fries.png" alt="Masala Fries" loading="lazy">
+                <div class="card-inner">
+                    <h3>Masala Fries</h3>
+                    <p>Large bucket of fries with masala.</p>
+                    <div class="card-price-row">
+                        <strong style="color:#E4002B; font-size:1.2rem;">Rs. 300</strong>
+                        <button class="btn-kfc" style="width:auto; padding:10px 20px;" onclick="addToCart('Masala Fries', 300, 'images/masala-fries.png')">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 FoodLion. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms &amp; Conditions</a></p>
+    </footer>
+    <script src="JS/script.js"></script>
+</body>
+</html>

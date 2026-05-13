@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodLion - Food Delivery on Your Doorstep</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <style>
+        model-viewer {
+            width: 100%;
+            height: 250px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .ar-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: white;
+            color: #FF5722;
+            border: 2px solid #FF5722;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .ar-btn:hover { background: #FF5722; color: white; }
+
+        /* Hero text stagger */
+        .hero-content h1 { animation-delay: 0s; }
+        .hero-content p   { animation-delay: 0.15s; }
+        .hero-content div { animation-delay: 0.3s; }
+
+        /* Trending section card inner padding */
+        #popular-menu .card h3,
+        #popular-menu .card p { padding-left: 0; padding-right: 0; }
+        #popular-menu .card { padding: 20px; text-align: center; }
+
+        /* Features icon animation on hover */
+        #features-section .icon-emoji {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        #features-section .card:hover .icon-emoji {
+            animation: emojiPop 0.5s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        @keyframes emojiPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5) rotate(-10deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-section">
+                <a href="index.html" class="logo">
+                    <img src="images/logo-final.png" alt="FoodLion Logo">
+                </a>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Welcome</a></li>
+                    <li><a href="restaurants.html" class="active">Restaurants</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contacts.html">Contact</a></li>
+                    <li><a href="login.html" class="btn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero reveal">
+            <video autoplay muted loop playsinline class="back-video">
+                <source src="images/background.mp4" type="video/mp4">
+            </video>
+            <div class="overlay"></div>
+            <div class="hero-content">
+                <h1>Welcome to FoodLion!</h1>
+                <p>Your favorite meals delivered fast at your doorstep in Okara.</p>
+                <div>
+                    <a href="signup.html" class="btn">Get Started</a>
+                    <a href="restaurants.html" class="btn btn-white">View Menu</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRENDING -->
+        <section id="popular-menu" class="reveal">
+            <div class="content-wrapper" style="text-align: center;">
+                <h2>Trending This Week 🔥</h2>
+                <p style="margin-bottom: 30px; color: #666;">Top rated by our customers. Experience them in AR!</p>
+
+                <div class="grid-container">
+                    <div class="card">
+                        <model-viewer
+                            src="images/burger.glb"
+                            poster="images/Zinger.jpg"
+                            alt="Zinger Burger AR"
+                            shadow-intensity="1"
+                            camera-controls
+                            auto-rotate
+                            touch-action="pan-y">
+                        </model-viewer>
+                        <h3>Zinger Burger</h3>
+                        <p>Crispy chicken with spicy sauce.</p>
+                        <h4 style="color: #FF5722; margin: 10px 0;">Rs. 450</h4>
+                        <button class="btn" onclick="addToCart('Zinger Burger', 450, 'images/Zinger.jpg')" style="width:100%;">Order Now</button>
+                        <button class="ar-btn" onclick="alert('Use the Model Viewer above to interact!')"><i class="fa-solid fa-cube"></i> Interactive 3D</button>
+                    </div>
+
+                    <div class="card">
+                        <img src="images/pizza.jpg" alt="Fajita Pizza" loading="lazy">
+                        <h3>Chicken Fajita Pizza</h3>
+                        <p>Large size with extra cheese.</p>
+                        <h4 style="color: #FF5722; margin: 10px 0;">Rs. 1200</h4>
+                        <button class="btn" onclick="addToCart('Chicken Fajita Pizza', 1200, 'images/pizza.jpg')" style="width:100%; margin-top:10px;">Order Now</button>
+                    </div>
+
+                    <div class="card">
+                        <img src="images/Biryani.jpg" alt="Special Biryani" loading="lazy">
+                        <h3>Special Biryani</h3>
+                        <p>Authentic taste of Pakistan.</p>
+                        <h4 style="color: #FF5722; margin: 10px 0;">Rs. 350</h4>
+                        <button class="btn" onclick="addToCart('Special Biryani', 350, 'images/Biryani.jpg')" style="width:100%; margin-top:10px;">Order Now</button>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <a href="restaurants.html" style="text-decoration: none; color: #FF5722; font-weight: bold; border-bottom: 2px solid #FF5722;">View Full Menu &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section id="works-section" class="parallax-section reveal">
+            <div class="overlay"></div>
+            <div class="content-wrapper">
+                <h2 style="color: white; border-bottom: 3px solid #FF5722;">How It Works</h2>
+                <div class="steps-container">
+                    <div class="step-card transparent-card" data-step="1">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <h3>1. Select</h3>
+                        <p>Choose from our wide range of delicious menu items.</p>
+                    </div>
+                    <div class="step-card transparent-card" data-step="2">
+                        <i class="fa-solid fa-utensils"></i>
+                        <h3>2. We Cook</h3>
+                        <p>Our top chefs prepare your meal with fresh ingredients.</p>
+                    </div>
+                    <div class="step-card transparent-card" data-step="3">
+                        <i class="fa-solid fa-motorcycle"></i>
+                        <h3>3. Fast Delivery</h3>
+                        <p>Our riders deliver to your door while it's still hot.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY CHOOSE US -->
+        <section id="features-section" class="reveal">
+            <h2>Why Choose Us?</h2>
+            <div class="grid-container">
+                <div class="card" style="padding: 35px 25px; text-align: center;">
+                    <div class="icon-emoji" style="font-size: 3rem; margin-bottom: 10px; color: #FF5722;">⚡</div>
+                    <h3>Fast Delivery</h3>
+                    <p>Under 30 minutes guaranteed.</p>
+                </div>
+                <div class="card" style="padding: 35px 25px; text-align: center;">
+                    <div class="icon-emoji" style="font-size: 3rem; margin-bottom: 10px; color: #FF5722;">⭐</div>
+                    <h3>Best Quality</h3>
+                    <p>Top rated restaurants only.</p>
+                </div>
+                <div class="card" style="padding: 35px 25px; text-align: center;">
+                    <div class="icon-emoji" style="font-size: 3rem; margin-bottom: 10px; color: #FF5722;">💳</div>
+                    <h3>Easy Payment</h3>
+                    <p>Cash on delivery or Card.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DISCOUNT BANNER -->
+        <section id="discount-banner" class="reveal">
+            <div class="banner-content">
+                <div class="banner-text">
+                    <h2 style="border: none; color: white; margin-bottom: 10px;">🌙 Midnight Cravings?</h2>
+                    <h1>FLAT 50% OFF</h1>
+                    <p>On all Zinger Burgers &amp; Pizzas till 12:00 AM</p>
+                    <div class="coupon-code" title="Click to copy!">Use Code: <span>LION50</span></div>
+                </div>
+                <div class="banner-btn">
+                    <a href="restaurants.html" class="btn btn-white">Order Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS -->
+        <section id="reviews-section" class="parallax-section reveal">
+            <div class="overlay"></div>
+            <div class="content-wrapper">
+                <h2 style="color: white; border-bottom: 3px solid #FF5722;">Happy Customers</h2>
+                <div class="reviews-container">
+                    <div class="review-card">
+                        <p><i>"The Zinger burger was absolutely amazing! Arrived hot and crispy."</i></p>
+                        <strong>- Ali Khan</strong>
+                    </div>
+                    <div class="review-card">
+                        <p><i>"Best delivery service in Okara. The rider was very polite."</i></p>
+                        <strong>- Sara Ahmed</strong>
+                    </div>
+                    <div class="review-card">
+                        <p><i>"I use FoodLion every weekend. Highly recommended!"</i></p>
+                        <strong>- Usman Z.</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- APP DOWNLOAD -->
+        <section id="app-download" class="reveal">
+            <div class="app-container">
+                <div class="app-content">
+                    <h2 style="border: none; text-align: left; margin-bottom: 10px;">Put FoodLion in Your Pocket</h2>
+                    <p>Download our app for faster ordering and exclusive mobile-only deals.</p>
+                    <ul class="app-features">
+                        <li><i class="fa-solid fa-check-circle"></i> Live Order Tracking</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Save Multiple Addresses</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Free Delivery on First Order</li>
+                    </ul>
+                    <div class="store-buttons">
+                        <button class="store-btn">
+                            <i class="fa-brands fa-google-play"></i>
+                            <div class="btn-text">
+                                <span>GET IT ON</span>
+                                <strong>Google Play</strong>
+                            </div>
+                        </button>
+                        <button class="store-btn">
+                            <i class="fa-brands fa-apple"></i>
+                            <div class="btn-text">
+                                <span>Download on the</span>
+                                <strong>App Store</strong>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="app-image">
+                    <img src="images/app-image.png" alt="FoodLion Mobile App" loading="lazy">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 FoodLion. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">
+            <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms &amp; Conditions</a>
+        </p>
+    </footer>
+
+    <script src="JS/script.js"></script>
+</body>
+</html>

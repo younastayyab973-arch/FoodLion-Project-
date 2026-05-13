@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karachi Biryani - FoodLion</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        .desi-header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/biryani-header.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 130px 20px 80px;
+            text-align: center;
+            border-bottom: 5px solid #FF9800;
+        }
+        .desi-header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            font-style: italic;
+            margin: 10px 0;
+            animation: heroReveal 0.8s ease both;
+            text-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+        .desi-header p { animation: heroReveal 0.8s 0.2s ease both; font-size: 1.2rem; opacity: 0.9; }
+        @keyframes heroReveal {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .brand-badge {
+            background-color: #FF9800;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            animation: heroReveal 0.6s ease both;
+        }
+        .section-title {
+            text-align: center;
+            margin: 45px 0 15px;
+            font-size: 1.8rem;
+            color: #333;
+            text-transform: uppercase;
+            font-weight: 800;
+            border-bottom: 3px solid #FF9800;
+            display: inline-block;
+            transition: letter-spacing 0.3s ease;
+        }
+        .section-title:hover { letter-spacing: 2px; }
+        .section-container { text-align: center; }
+        .deal-card {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 4px 15px rgba(255,152,0,0.35);
+            flex-wrap: wrap;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .deal-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.1);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+        .deal-card:hover::after { transform: translateX(100%); }
+        .deal-card:hover { transform: scale(1.02); box-shadow: 0 12px 30px rgba(255,152,0,0.45); }
+        .deal-text h3 { margin: 0; font-size: 1.5rem; font-weight: bold; }
+        .deal-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: white;
+            color: #E65100;
+            padding: 5px 15px;
+            border-radius: 5px;
+        }
+        .btn-desi {
+            background-color: #E65100;
+            color: white;
+            width: 100%;
+            font-weight: bold;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-desi::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.15);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+        .btn-desi:hover::before { transform: translateX(100%); }
+        .btn-desi:hover {
+            background-color: #bf360c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(230,81,0,0.4);
+        }
+        .grid-container .card h3 { padding: 15px 20px 5px; }
+        .grid-container .card p { padding: 0 20px 5px; }
+        .grid-container .card h4 { padding: 0 20px; }
+        .grid-container .card .btn-desi { margin: 10px 20px 20px; width: calc(100% - 40px); }
+        .grid-container .card:nth-child(1) { animation: cardIn 0.5s 0.1s ease both; }
+        .grid-container .card:nth-child(2) { animation: cardIn 0.5s 0.2s ease both; }
+        .grid-container .card:nth-child(3) { animation: cardIn 0.5s 0.3s ease both; }
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media(max-width:600px) { .deal-card { flex-direction: column; text-align: center; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo-section"><a href="index.html" class="logo"><img src="images/logo-final.png" alt="FoodLion Logo"></a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Welcome</a></li>
+                    <li><a href="restaurants.html" class="active">Restaurants</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contacts.html">Contact</a></li>
+                    <li><a href="login.html" class="btn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="desi-header">
+        <span class="brand-badge">Authentic Karachi Taste</span>
+        <h1>Karachi Biryani</h1>
+        <p>Spicy, Aromatic, and Full of Flavor.</p>
+    </section>
+
+    <main style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+        <div class="section-container"><h2 class="section-title">🔥 Jummah Deals</h2></div>
+
+        <div class="deal-card" onclick="addToCart('Friends Platter', 1200, 'images/biryani-header.png')">
+            <div class="deal-text">
+                <h3>Friends Platter</h3>
+                <p>3 Full Chicken Biryani + 1.5L Drink + Raita &amp; Salad</p>
+            </div>
+            <div class="deal-price">Rs. 1200</div>
+        </div>
+
+        <div class="section-container"><h2 class="section-title">🍛 Rice Specials</h2></div>
+
+        <div class="grid-container">
+            <div class="card menu-card">
+                <img src="images/chicken-biryani.avif" alt="Chicken Biryani" loading="lazy">
+                <h3>Chicken Biryani (Full)</h3>
+                <p>Traditional Karachi style with double masala.</p>
+                <h4 style="color:#E65100;">Rs. 350</h4>
+                <button class="btn-desi" onclick="addToCart('Chicken Biryani Full', 350, 'images/chicken-biryani.avif')">Add to Bucket</button>
+            </div>
+
+            <div class="card menu-card">
+                <img src="images/beef-pulao.png" alt="Beef Nalli Biryani" loading="lazy">
+                <h3>Beef Nalli Biryani</h3>
+                <p>Special Friday Menu. Slow cooked beef.</p>
+                <h4 style="color:#E65100;">Rs. 550</h4>
+                <button class="btn-desi" onclick="addToCart('Beef Nalli Biryani', 550, 'images/beef-pulao.png')">Add to Bucket</button>
+            </div>
+
+            <div class="card menu-card">
+                <img src="images/chicken-pulao.png" alt="Chicken Pulao" loading="lazy">
+                <h3>Chicken Pulao</h3>
+                <p>Less spicy, aromatic yakhni pulao.</p>
+                <h4 style="color:#E65100;">Rs. 320</h4>
+                <button class="btn-desi" onclick="addToCart('Chicken Pulao', 320, 'images/chicken-pulao.png')">Add to Bucket</button>
+            </div>
+        </div>
+
+        <div class="section-container"><h2 class="section-title">🥗 Sides &amp; Meetha</h2></div>
+
+        <div class="grid-container">
+            <div class="card menu-card">
+                <img src="images/shami-kabab.avif" alt="Shami Kabab" loading="lazy">
+                <h3>Shami Kabab</h3>
+                <p>Fried chicken lentil patty.</p>
+                <h4 style="color:#E65100;">Rs. 60 / pc</h4>
+                <button class="btn-desi" onclick="addToCart('Shami Kabab', 60, 'images/shami-kabab.avif')">Add to Bucket</button>
+            </div>
+
+            <div class="card menu-card">
+                <img src="images/shahi-zarda.png" alt="Shahi Zarda" loading="lazy">
+                <h3>Shahi Zarda</h3>
+                <p>Sweet rice with nuts and gulab jamun.</p>
+                <h4 style="color:#E65100;">Rs. 250</h4>
+                <button class="btn-desi" onclick="addToCart('Shahi Zarda', 250, 'images/shahi-zarda.png')">Add to Bucket</button>
+            </div>
+        </div>
+    </main>
+
+    <footer><p>&copy; 2026 FoodLion. All rights reserved.</p></footer>
+    <script src="JS/script.js"></script>
+</body>
+</html>

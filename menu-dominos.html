@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domino's Pizza - FoodLion</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+    <style>
+        .dominos-header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/pizza-header.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 130px 20px 80px;
+            text-align: center;
+            border-bottom: 5px solid #006491;
+        }
+        .dominos-header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            font-style: italic;
+            animation: revealDown 0.8s ease both;
+            text-shadow: 0 5px 25px rgba(0,0,0,0.5);
+        }
+        .dominos-header p { animation: revealDown 0.8s 0.2s ease both; font-size: 1.2rem; opacity: 0.9; }
+        .brand-badge {
+            background-color: #E31837;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            animation: revealDown 0.6s ease both;
+            margin-bottom: 10px;
+        }
+        @keyframes revealDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section-title {
+            text-align: center;
+            margin: 45px 0 15px;
+            font-size: 1.8rem;
+            color: #333;
+            text-transform: uppercase;
+            font-weight: 800;
+            border-bottom: 2px solid #E31837;
+            display: inline-block;
+            transition: letter-spacing 0.3s ease;
+        }
+        .section-title:hover { letter-spacing: 2px; }
+        .deal-card {
+            background: #E31837;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 4px 15px rgba(227,24,55,0.3);
+            flex-wrap: wrap;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .deal-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.08);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+        .deal-card:hover::after { transform: translateX(100%); }
+        .deal-card:hover { transform: scale(1.02); box-shadow: 0 12px 35px rgba(227,24,55,0.4); }
+        .deal-card h3 { margin: 0; font-size: 1.5rem; }
+        .deal-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: white;
+            color: #E31837;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        .btn-bucket {
+            background-color: #E31837;
+            width: 100%;
+            border: none;
+            color: white;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-bucket::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.15);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+        .btn-bucket:hover::before { transform: translateX(100%); }
+        .btn-bucket:hover {
+            background-color: #b5001a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(227,24,55,0.4);
+        }
+        model-viewer {
+            width: 100%;
+            height: 250px;
+            background-color: #fafafa;
+            border-radius: 5px 5px 0 0;
+            outline: none;
+        }
+        .ar-button {
+            background-color: #E31837;
+            border-radius: 20px;
+            border: none;
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            padding: 10px 18px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 10;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .ar-button:hover { transform: scale(1.07); box-shadow: 0 4px 12px rgba(227,24,55,0.4); }
+        .grid-container .card:nth-child(1) { animation: cardReveal 0.5s 0.1s ease both; }
+        .grid-container .card:nth-child(2) { animation: cardReveal 0.5s 0.2s ease both; }
+        .grid-container .card:nth-child(3) { animation: cardReveal 0.5s 0.3s ease both; }
+        @keyframes cardReveal {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo-section"><a href="index.html" class="logo"><img src="images/logo-final.png" alt="FoodLion Logo"></a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Welcome</a></li>
+                    <li><a href="restaurants.html" class="active">Restaurants</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contacts.html">Contact</a></li>
+                    <li><a href="login.html" class="btn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="dominos-header">
+        <span class="brand-badge">Official Partner</span>
+        <h1>Domino's</h1>
+        <p>Hot, Cheesy, Delicious and Delivered in 30 Minutes.</p>
+    </section>
+
+    <main style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+        <div style="text-align:center;"><h2 class="section-title">🔥 Hot Deals</h2></div>
+
+        <div class="deal-card" onclick="addToCart('Family Feast Deal', 2500, 'images/pizza-header.png')">
+            <div>
+                <h3>Family Feast</h3>
+                <p>2 Large Pizzas + 1.5L Drink + Garlic Bread</p>
+            </div>
+            <div class="deal-price">Rs. 2500</div>
+        </div>
+
+        <div style="text-align:center;"><h2 class="section-title">🍕 Legends Range</h2></div>
+
+        <div class="grid-container">
+            <div class="card menu-card">
+                <model-viewer src="images/pizza-3d.glb" poster="images/pepperoni.png" alt="Pepperoni Pizza" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate shadow-intensity="1">
+                    <button slot="ar-button" class="ar-button"><i class="fa-solid fa-cube"></i> View in Room</button>
+                </model-viewer>
+                <h3>Pepperoni Passion</h3>
+                <p>Double pepperoni &amp; extra mozzarella cheese.</p>
+                <h4 style="color:#E31837; margin:10px 20px;">Rs. 1400</h4>
+                <button class="btn-bucket" style="margin:0 20px 20px; width:calc(100% - 40px);" onclick="addToCart('Pepperoni Passion', 1400, 'images/pepperoni.png')">Add to Bucket</button>
+            </div>
+
+            <div class="card menu-card">
+                <model-viewer src="models/tex_mex.glb" poster="images/tex-mex.avif" alt="Tex-Mex Chicken Pizza" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate shadow-intensity="1">
+                    <button slot="ar-button" class="ar-button"><i class="fa-solid fa-cube"></i> View in Room</button>
+                </model-viewer>
+                <h3>Tex-Mex Chicken</h3>
+                <p>Spicy chicken, onions, green peppers &amp; jalapenos.</p>
+                <h4 style="color:#E31837; margin:10px 20px;">Rs. 1350</h4>
+                <button class="btn-bucket" style="margin:0 20px 20px; width:calc(100% - 40px);" onclick="addToCart('Tex-Mex Chicken', 1350, 'images/tex-mex.avif')">Add to Bucket</button>
+            </div>
+
+            <div class="card menu-card">
+                <model-viewer src="models/veggie.glb" poster="images/Veggie-supreme.avif" alt="Veggie Supreme Pizza" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate shadow-intensity="1">
+                    <button slot="ar-button" class="ar-button"><i class="fa-solid fa-cube"></i> View in Room</button>
+                </model-viewer>
+                <h3>Veggie Supreme</h3>
+                <p>Onions, mushrooms, black olives &amp; tomatoes.</p>
+                <h4 style="color:#E31837; margin:10px 20px;">Rs. 1200</h4>
+                <button class="btn-bucket" style="margin:0 20px 20px; width:calc(100% - 40px);" onclick="addToCart('Veggie Supreme', 1200, 'images/Veggie-supreme.avif')">Add to Bucket</button>
+            </div>
+        </div>
+
+        <div style="text-align:center;"><h2 class="section-title">🍗 Sides &amp; Desserts</h2></div>
+
+        <div class="grid-container">
+            <div class="card menu-card">
+                <model-viewer src="models/wings.glb" poster="images/chicken-wings.png" alt="Chicken Wings" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate shadow-intensity="1">
+                    <button slot="ar-button" class="ar-button"><i class="fa-solid fa-cube"></i> View in Room</button>
+                </model-viewer>
+                <h3>Chicken Wings</h3>
+                <p>6 pcs Oven baked spicy wings.</p>
+                <h4 style="color:#E31837; margin:10px 20px;">Rs. 450</h4>
+                <button class="btn-bucket" style="margin:0 20px 20px; width:calc(100% - 40px);" onclick="addToCart('Chicken Wings', 450, 'images/chicken-wings.png')">Add to Bucket</button>
+            </div>
+
+            <div class="card menu-card">
+                <model-viewer src="models/choco_lava.glb" poster="images/domino-choco.avif" alt="Choco Lava Cake" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate shadow-intensity="1">
+                    <button slot="ar-button" class="ar-button"><i class="fa-solid fa-cube"></i> View in Room</button>
+                </model-viewer>
+                <h3>Choco Lava Cake</h3>
+                <p>Warm chocolate cake with liquid center.</p>
+                <h4 style="color:#E31837; margin:10px 20px;">Rs. 350</h4>
+                <button class="btn-bucket" style="margin:0 20px 20px; width:calc(100% - 40px);" onclick="addToCart('Choco Lava Cake', 350, 'images/domino-choco.avif')">Add to Bucket</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 FoodLion. All rights reserved.</p>
+    </footer>
+    <script src="JS/script.js"></script>
+</body>
+</html>

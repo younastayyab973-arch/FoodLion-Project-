@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodLion - Full Menu</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        .menu-header {
+            background: linear-gradient(135deg, #2D2D2D, #FF5722);
+            color: white;
+            padding: 120px 20px 80px;
+            text-align: center;
+            border-bottom: 5px solid #FF5722;
+            animation: headerIn 0.8s ease both;
+        }
+        @keyframes headerIn {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .menu-header h1 { font-size: 3rem; text-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .menu-header p { font-size: 1.1rem; opacity: 0.85; margin-top: 8px; }
+
+        .category-title {
+            text-align: center;
+            margin: 50px 0 10px;
+            color: #FF5722;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+        .category-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #FF5722;
+            margin: 8px auto 0;
+            border-radius: 3px;
+            transition: width 0.4s ease;
+        }
+        .category-title:hover::after { width: 100px; }
+
+        .price-tag {
+            background: #FF5722;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 2;
+            box-shadow: 0 3px 10px rgba(255,87,34,0.4);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .card:hover .price-tag {
+            transform: scale(1.1) rotate(-3deg);
+            box-shadow: 0 5px 15px rgba(255,87,34,0.5);
+        }
+        .menu-card { position: relative; }
+
+        .grid-container .card h3 { padding: 15px 20px 5px; }
+        .grid-container .card p { padding: 0 20px; }
+        .grid-container .card .btn { margin: 15px 20px 20px; width: calc(100% - 40px); }
+
+        /* Stagger by category */
+        .grid-container .card { animation: menuCardIn 0.5s ease both; }
+        .grid-container .card:nth-child(1) { animation-delay: 0.05s; }
+        .grid-container .card:nth-child(2) { animation-delay: 0.15s; }
+        .grid-container .card:nth-child(3) { animation-delay: 0.25s; }
+        @keyframes menuCardIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo-section"><a href="index.html" class="logo"><img src="images/logo-final.png" alt="FoodLion Logo"></a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Welcome</a></li>
+                    <li><a href="restaurants.html" class="active">Restaurants</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contacts.html">Contact</a></li>
+                    <li><a href="login.html" class="btn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="menu-header">
+            <h1>Our Full Menu</h1>
+            <p>Freshly prepared, hygiene guaranteed.</p>
+        </section>
+
+        <h2 class="category-title"><i class="fa-solid fa-burger"></i> Burgers</h2>
+        <div class="grid-container">
+            <div class="card menu-card">
+                <span class="price-tag">Rs. 450</span>
+                <img src="images/Zinger.jpg" alt="Zinger Burger">
+                <h3>Zinger Burger</h3>
+                <p>Crispy chicken fillet with spicy mayo and lettuce.</p>
+                <button class="btn" onclick="addToCart('Zinger Burger', 450, 'images/Zinger.jpg')">Add to Order</button>
+            </div>
+            <div class="card menu-card">
+                <span class="price-tag">Rs. 650</span>
+                <img src="images/Zinger.jpg" alt="Double Decker">
+                <h3>Double Decker</h3>
+                <p>Two patties, double cheese, and secret sauce.</p>
+                <button class="btn" onclick="addToCart('Double Decker', 650, 'images/Zinger.jpg')">Add to Order</button>
+            </div>
+            <div class="card menu-card">
+                <span class="price-tag">Rs. 350</span>
+                <img src="images/Zinger.jpg" alt="Chicken Patty">
+                <h3>Chicken Patty</h3>
+                <p>Classic school canteen style burger.</p>
+                <button class="btn" onclick="addToCart('Chicken Patty', 350, 'images/Zinger.jpg')">Add to Order</button>
+            </div>
+        </div>
+
+        <h2 class="category-title"><i class="fa-solid fa-pizza-slice"></i> Pizzas</h2>
+        <div class="grid-container">
+            <div class="card menu-card">
+                <span class="price-tag">Rs. 1200</span>
+                <img src="images/pizza.jpg" alt="Chicken Fajita">
+                <h3>Chicken Fajita</h3>
+                <p>Large 13-inch pizza with onions and capsicum.</p>
+                <button class="btn" onclick="addToCart('Chicken Fajita Pizza', 1200, 'images/pizza.jpg')">Add to Order</button>
+            </div>
+            <div class="card menu-card">
+                <span class="price-tag">Rs. 1300</span>
+                <img src="images/pizza.jpg" alt="Creamy Tikka">
+                <h3>Creamy Tikka</h3>
+                <p>Malai boti topping with extra cheese.</p>
+                <button class="btn" onclick="addToCart('Creamy Tikka Pizza', 1300, 'images/pizza.jpg')">Add to Order</button>
+            </div>
+        </div>
+
+        <h2 class="category-title"><i class="fa-solid fa-bowl-rice"></i> Rice Specials</h2>
+        <div class="grid-container">
+            <div class="card menu-card">
+                <span class="price-tag">Rs. 350</span>
+                <img src="images/Biryani.jpg" alt="Special Biryani">
+                <h3>Special Biryani</h3>
+                <p>Aromatic basmati rice with spicy chicken.</p>
+                <button class="btn" onclick="addToCart('Special Biryani', 350, 'images/Biryani.jpg')">Add to Order</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 FoodLion. All rights reserved.</p>
+    </footer>
+    <script src="JS/script.js"></script>
+</body>
+</html>
